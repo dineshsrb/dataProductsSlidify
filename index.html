@@ -1,1 +1,177 @@
-default
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Replacement of fossil fuel</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Replacement of fossil fuel">
+  <meta name="author" content="Dinesh SRB">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Replacement of fossil fuel</h1>
+    <h2>By renewable producer gas from biomass</h2>
+    <p>Dinesh SRB<br/>Data science specialization, Coursera</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>About the application</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>This app can be used by any biomass energy companies or Industrial consumers who wish to replace their fossil fuels like LPG, Diesel, Furnace oil etc., with renewable producer gas</li>
+<li>Producer gas,  mixture of flammable gases (principally carbon monoxide and hydrogen) and nonflammable gases (mainly nitrogen and carbon dioxide) made by the partial combustion of renewable carbonaceous substances like wood, coconut shell etc</li>
+<li>The app takes 3 inputs<br>
+    a. Type of fuel<br>
+    b. Daily consumption of fuel<br>
+    c. Units of fuel consumption</li>
+<li>The output of the app is
+    a. Equivalent producer gas required to replace their fuel<br>
+    b. Required size of producer gas plant or gasifier</li>
+<li>To replace the liquid or gaseous fuel, this is the best and most optimal solutions to reduce energy cost by at least 10%</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Application Input and Output 1</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The code shown below gives you output of the function that is used to calculate equivalent producer gas required to replace fuel based on inputs, fuel, qty, and units</p>
+
+<pre><code class="r">equivBiomass &lt;- function (fuel, qty, units) {
+        if (fuel == &quot;LPG&quot;) {
+                ifelse (units == &quot;tons/day&quot;, op &lt;- qty*12000/1100, 
+                        ifelse (units == &quot;kL/day&quot;, op &lt;- qty * 0.54 * 12000/1100,
+                                op &lt;- qty*(12000/1100)/1000
+                        ))
+        }
+        print(paste(round (op, digits = 2), &quot;tons/day&quot;))
+}
+equivBiomass(&quot;LPG&quot;, 10, &quot;tons/day&quot;) ## Sample input to the function
+</code></pre>
+
+<pre><code>## [1] &quot;109.09 tons/day&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Application Input and Output 2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The code shown below gives you output of the function that is used to calculate required gasifier plant size to replace fuel based on inputs, fuel, qty, and units</p>
+
+<pre><code class="r">plantCapacity &lt;- function (fuel, qty, units) {
+        if (fuel == &quot;LPG&quot;) {
+                ifelse (units == &quot;tons/day&quot;, op &lt;- qty*12000/1100, 
+                        ifelse (units == &quot;kL/day&quot;, op &lt;- qty * 0.54 * 12000/1100,
+                                op &lt;- qty*(12000/1100)/1000
+                        ))
+        }  
+        op1 &lt;- (op *1000* 1100/3900)/(0.7*24)
+        print(paste (round (op1, digits = 2), &quot;kg/hr&quot;))
+}
+plantCapacity(&quot;LPG&quot;, 10, &quot;tons/day&quot;) ## Sample input to the function
+</code></pre>
+
+<pre><code>## [1] &quot;1831.5 kg/hr&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>This application gives the user a lot of clarity on increase in volume of gas and the required raw material input for the specified gasifier plant size.</li>
+<li>This would be the first level of calculation to find out the feasibility for replacement of fuel.</li>
+<li>This app can be extended with other features based on requirement.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='About the application'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Application Input and Output 1'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Application Input and Output 2'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Summary'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
